@@ -12,6 +12,17 @@ class PizzaService {
       throw Exception('Failed to load pizzas');
     }
   }
+
+  Future<String> getImage(String id) async {
+    final response =
+        await _dio.get('https://pizzas.shrp.dev/items/pizzas/assets/$id');
+
+    if (response.statusCode == 200) {
+      return response.data['data'];
+    } else {
+      throw Exception('Failed to load image');
+    }
+  }
 }
 
 class Pizza {
@@ -23,6 +34,8 @@ class Pizza {
   final String image;
   final String category;
   final List<int> elements;
+  int quantity;
+
 
   Pizza({
     required this.id,
@@ -33,6 +46,7 @@ class Pizza {
     required this.image,
     required this.category,
     required this.elements,
+    this.quantity = 1
   });
 
   factory Pizza.fromJson(Map<String, dynamic> json) {

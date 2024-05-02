@@ -16,7 +16,7 @@ class PizzaDetails extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
-            Image.network(pizza.image),
+           Image.network('https://pizzas.shrp.dev/assets/${pizza.image}'),
             const SizedBox(height: 16.0),
             Text(
               pizza.name,
